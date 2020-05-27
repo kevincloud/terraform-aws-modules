@@ -13,7 +13,7 @@ module "custom-vpc" {
 
 module "custom-sg" {
     source  = "app.terraform.io/kevindemos/custom-sg/aws"
-    version = "1.0.0"
+    version = "1.0.1"
 
     description = "my moduled security group"
     identifier = "kevinc"
@@ -35,4 +35,22 @@ module "dynamodb" {
             keydata = "S"
         }
     }
+}
+
+module "iam-role" {
+    source  = "app.terraform.io/kevindemos/iam-role/aws"
+    version = "1.0.0"
+
+    identifier = "kevinc"
+    action = [
+        "ec2:*",
+        "dynamodb:*",
+        "ssm:UpdateInstanceInformation",
+        "ssm:ListInstanceAssociations",
+        "ssm:ListAssociations",
+        "ssmmessages:CreateControlChannel",
+        "ssmmessages:CreateDataChannel",
+        "ssmmessages:OpenControlChannel",
+        "ssmmessages:OpenDataChannel"
+    ]
 }
