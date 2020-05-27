@@ -10,6 +10,7 @@ module "custom-vpc" {
 
     aws_region = var.aws_region
 }
+
 module "custom-sg" {
     source  = "app.terraform.io/kevindemos/custom-sg/aws"
     version = "1.0.0"
@@ -17,4 +18,21 @@ module "custom-sg" {
     description = "my moduled security group"
     identifier = "kevinc"
     vpc_id = module.custom-vpc.id
+}
+
+module "dynamodb" {
+    source  = "app.terraform.io/kevindemos/dynamodb/aws"
+    version = "1.0.0"
+
+    identifier = "kevinc"
+    key_setup = {
+        hashkey = {
+            keyname = "MyHash"
+            keydata = "S"
+        }
+        rangekey = {
+            keyname = "MyRange"
+            keydata = "S"
+        }
+    }
 }
