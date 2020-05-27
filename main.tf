@@ -66,3 +66,10 @@ module "my-nginx" {
   sg_id = module.custom-sg.id
   subnet_id = module.custom-vpc.subnet_id
 }
+
+module "my-bucket" {
+  source  = "app.terraform.io/kevindemos/my-bucket/aws"
+  version = "1.0.0"
+
+  identifier = var.identifier
+}
