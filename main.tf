@@ -6,7 +6,7 @@ provider "aws" {
 
 module "custom-vpc" {
     source  = "app.terraform.io/kevindemos/custom-vpc/aws"
-    version = "1.0.0"
+    version = "1.0.1"
 
     aws_region = var.aws_region
 }
@@ -16,7 +16,7 @@ module "custom-sg" {
     version = "1.0.1"
 
     description = "my moduled security group"
-    identifier = "kevinc"
+  identifier = var.identifier
     vpc_id = module.custom-vpc.id
 }
 
@@ -24,7 +24,7 @@ module "dynamodb" {
     source  = "app.terraform.io/kevindemos/dynamodb/aws"
     version = "1.0.0"
 
-    identifier = "kevinc"
+  identifier = var.identifier
     key_setup = {
         hashkey = {
             keyname = "MyHash"
@@ -41,7 +41,7 @@ module "iam-role" {
     source  = "app.terraform.io/kevindemos/iam-role/aws"
     version = "1.0.2"
 
-    identifier = "kevinc"
+  identifier = var.identifier
     actions = [
         "ec2:*",
         "dynamodb:*",
@@ -53,4 +53,16 @@ module "iam-role" {
         "ssmmessages:OpenControlChannel",
         "ssmmessages:OpenDataChannel"
     ]
+}
+
+module "my-nginx" {
+  source  = "app.terraform.io/kevindemos/my-nginx/aws"
+  version = "1.0.1"
+
+  identifier = var.identifier
+  key_pair = var.key_pair
+  instance_size = "t3.micro"
+  profile_id = module.iam-role.profile_id
+  sg_id = module.custom-sg.id
+  subnet_id = module.custom-vpc.subnet_id
 }
