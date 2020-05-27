@@ -42,7 +42,7 @@ module "iam-role" {
     version = "1.0.0"
 
     identifier = "kevinc"
-    action = [
+    actions = [
         "ec2:*",
         "dynamodb:*",
         "ssm:UpdateInstanceInformation",
