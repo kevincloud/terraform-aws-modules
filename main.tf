@@ -39,7 +39,7 @@ module "dynamodb" {
 
 module "iam-role" {
     source  = "app.terraform.io/kevindemos/iam-role/aws"
-    version = "1.0.1"
+    version = "1.0.2"
 
     identifier = "kevinc"
     actions = [
