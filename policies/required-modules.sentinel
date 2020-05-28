@@ -21,8 +21,8 @@ selected_modules = get_modules()
 
 # Rule to ensure all required modules are used
 use_modules = rule {
-    all selected_modules as mod {
-        mod in required_modules
+    all required_modules as mod {
+        mod in selected_modules
     }
 }
 
