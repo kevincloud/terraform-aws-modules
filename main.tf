@@ -44,6 +44,7 @@ module "iam-role" {
   identifier = var.identifier
     actions = [
         "ec2:*",
+        "s3:*",
         "dynamodb:*",
         "ssm:UpdateInstanceInformation",
         "ssm:ListInstanceAssociations",
