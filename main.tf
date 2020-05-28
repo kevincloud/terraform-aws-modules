@@ -58,7 +58,7 @@ module "iam-role" {
 
 module "my-nginx" {
   source  = "app.terraform.io/kevindemos/my-nginx/aws"
-  version = "1.0.1"
+  version = "1.0.2"
 
   identifier = var.identifier
   key_pair = var.key_pair
