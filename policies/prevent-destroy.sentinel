@@ -1,0 +1,9 @@
+import "tfplan/v2"
+
+delete_actions = rule {
+    filter tfplan.resource_changes as _, rc {
+        "delete" in rc.change.actions
+    }
+}
+
+main = rule { (not delete_actions) else true }

@@ -1,3 +1,10 @@
+#
+# This module enforces the usage of required modules. An infrastructure team, 
+# for instance, may produce a standard set of modules for engineering 
+# teams to consume. In order to reduce risk, this policy enforces 
+# the usage of those modules. 
+#
+
 import "tfconfig"
 
 # Get all referenced modules
