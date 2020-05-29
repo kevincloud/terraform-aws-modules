@@ -1,7 +1,7 @@
-import "tfplan/v2" as "tfplan"
+import "tfplan/v2" as plan
 
 delete_actions = rule {
-    filter tfplan.resource_changes as _, rc {
+    filter plan.resource_changes as _, rc {
         "delete" in rc.change.actions
     }
 }
