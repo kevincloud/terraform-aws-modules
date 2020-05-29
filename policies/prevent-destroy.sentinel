@@ -1,4 +1,4 @@
-import "tfplan/v2"
+import "tfplan/v2" as "tfplan"
 
 delete_actions = rule {
     filter tfplan.resource_changes as _, rc {
