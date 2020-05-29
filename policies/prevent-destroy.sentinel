@@ -4,4 +4,6 @@ delete_actions = filter plan.resource_changes as _, rc {
     "delete" in rc.change.actions
 }
 
-main = rule { (length(delete_actions) > 1) else true }
+print(delete_actions)
+
+main = rule { (length(delete_actions) == 0) else true }
