@@ -1,9 +1,7 @@
 import "tfplan/v2" as plan
 
-delete_actions = rule {
-    any plan.resource_changes as _, rc {
-        "delete" in rc.change.actions
-    }
+delete_actions = filter plan.resource_changes as _, rc {
+    "delete" in rc.change.actions
 }
 
-main = rule { (not delete_actions) else true }
+main = rule { (length(delete_actions) > 1) else true }
