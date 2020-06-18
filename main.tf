@@ -6,7 +6,7 @@ provider "aws" {
 
 module "custom-vpc" {
     source  = "app.terraform.io/kevindemos/custom-vpc/aws"
-    version = "1.0.1"
+    version = "1.0.2"
 
     aws_region = var.aws_region
 }
