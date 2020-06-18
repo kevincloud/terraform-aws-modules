@@ -6,7 +6,7 @@ provider "aws" {
 
 module "custom-vpc" {
     source  = "app.terraform.io/kevindemos/custom-vpc/aws"
-    version = "1.0.1"
+    version = "1.0.2"
 
     aws_region = var.aws_region
 }
@@ -22,7 +22,7 @@ module "custom-sg" {
 
 module "dynamodb" {
     source  = "app.terraform.io/kevindemos/dynamodb/aws"
-    version = "1.0.0"
+    version = "1.0.2"
 
     identifier = var.identifier
     key_setup = {
@@ -58,7 +58,7 @@ module "iam-role" {
 
 module "my-nginx" {
     source  = "app.terraform.io/kevindemos/my-nginx/aws"
-    version = "1.0.2"
+    version = "1.0.5"
 
     identifier = var.identifier
     key_pair = var.key_pair
