@@ -33,6 +33,7 @@ module "dynamodb" {
     version = "1.0.4"
 
     identifier = var.identifier
+    encryption = false
     key_setup = {
         hashkey = {
             keyname = "MyHash"
@@ -51,7 +52,7 @@ module "dynamodb" {
 
 module "iam-role" {
     source  = "app.terraform.io/kevindemos/iam-role/aws"
-    version = "1.0.3"
+    version = "1.0.4"
 
     identifier = var.identifier
     actions = [
@@ -66,15 +67,15 @@ module "iam-role" {
         "ssmmessages:OpenControlChannel",
         "ssmmessages:OpenDataChannel"
     ]
-    # tags = {
-    #     Department = "Solutions Engineering"
-    #     Environment = "Development"
-    # }
+    tags = {
+        Department = "Solutions Engineering"
+        Environment = "Development"
+    }
 }
 
 module "my-nginx" {
     source  = "app.terraform.io/kevindemos/my-nginx/aws"
-    version = "1.0.5"
+    version = "1.0.6"
 
     identifier = var.identifier
     key_pair = var.key_pair
@@ -82,19 +83,19 @@ module "my-nginx" {
     profile_id = module.iam-role.profile_id
     sg_id = module.custom-sg.id
     subnet_id = module.custom-vpc.subnet_id
-    # tags = {
-    #     Department = "Solutions Engineering"
-    #     Environment = "Development"
-    # }
+    tags = {
+        Department = "Solutions Engineering"
+        Environment = "Development"
+    }
 }
 
 module "my-bucket" {
     source  = "app.terraform.io/kevindemos/my-bucket/aws"
-    version = "1.0.0"
+    version = "1.0.1"
 
     identifier = var.identifier
-    # tags = {
-    #     Department = "Solutions Engineering"
-    #     Environment = "Development"
-    # }
+    tags = {
+        Department = "Solutions Engineering"
+        Environment = "Development"
+    }
 }
