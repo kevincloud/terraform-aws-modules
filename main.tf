@@ -30,7 +30,7 @@ module "custom-sg" {
 
 module "dynamodb" {
     source  = "app.terraform.io/kevindemos/dynamodb/aws"
-    version = "1.0.4"
+    version = "1.0.5"
 
     identifier = var.identifier
     encryption = false
