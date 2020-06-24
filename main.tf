@@ -6,23 +6,31 @@ provider "aws" {
 
 module "custom-vpc" {
     source  = "app.terraform.io/kevindemos/custom-vpc/aws"
-    version = "1.0.2"
+    version = "1.0.4"
 
     aws_region = var.aws_region
+    tags = {
+        Department = "Solutions Engineering"
+        Environment = "Development"
+    }
 }
 
 module "custom-sg" {
     source  = "app.terraform.io/kevindemos/custom-sg/aws"
-    version = "1.0.1"
+    version = "1.0.2"
 
     description = "my moduled security group"
     identifier = var.identifier
     vpc_id = module.custom-vpc.id
+    tags = {
+        Department = "Solutions Engineering"
+        Environment = "Development"
+    }
 }
 
 module "dynamodb" {
     source  = "app.terraform.io/kevindemos/dynamodb/aws"
-    version = "1.0.2"
+    version = "1.0.3"
 
     identifier = var.identifier
     key_setup = {
@@ -34,6 +42,10 @@ module "dynamodb" {
             keyname = "MyRange"
             keydata = "S"
         }
+    }
+    tags = {
+        Department = "Solutions Engineering"
+        Environment = "Development"
     }
 }
 
@@ -54,6 +66,10 @@ module "iam-role" {
         "ssmmessages:OpenControlChannel",
         "ssmmessages:OpenDataChannel"
     ]
+    # tags = {
+    #     Department = "Solutions Engineering"
+    #     Environment = "Development"
+    # }
 }
 
 module "my-nginx" {
@@ -66,6 +82,10 @@ module "my-nginx" {
     profile_id = module.iam-role.profile_id
     sg_id = module.custom-sg.id
     subnet_id = module.custom-vpc.subnet_id
+    # tags = {
+    #     Department = "Solutions Engineering"
+    #     Environment = "Development"
+    # }
 }
 
 module "my-bucket" {
@@ -73,4 +93,8 @@ module "my-bucket" {
     version = "1.0.0"
 
     identifier = var.identifier
+    # tags = {
+    #     Department = "Solutions Engineering"
+    #     Environment = "Development"
+    # }
 }
