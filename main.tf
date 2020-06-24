@@ -6,7 +6,7 @@ provider "aws" {
 
 module "custom-vpc" {
     source  = "app.terraform.io/kevindemos/custom-vpc/aws"
-    version = "1.0.4"
+    version = "1.0.5"
 
     aws_region = var.aws_region
     tags = {
@@ -17,7 +17,7 @@ module "custom-vpc" {
 
 module "custom-sg" {
     source  = "app.terraform.io/kevindemos/custom-sg/aws"
-    version = "1.0.2"
+    version = "1.0.3"
 
     description = "my moduled security group"
     identifier = var.identifier
@@ -30,7 +30,7 @@ module "custom-sg" {
 
 module "dynamodb" {
     source  = "app.terraform.io/kevindemos/dynamodb/aws"
-    version = "1.0.3"
+    version = "1.0.4"
 
     identifier = var.identifier
     key_setup = {
