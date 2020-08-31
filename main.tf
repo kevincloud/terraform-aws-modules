@@ -11,6 +11,10 @@ module "custom-vpc" {
     tags = {
         Department = "Solutions Engineering"
         Environment = "Development"
+        Owner = var.owner
+        Region = var.hc_region
+        Purpose = var.purpose
+        TTL = var.ttl
     }
 }
 
@@ -23,6 +27,10 @@ module "custom-sg" {
     tags = {
         Department = "Solutions Engineering"
         Environment = "Development"
+        Owner = var.owner
+        Region = var.hc_region
+        Purpose = var.purpose
+        TTL = var.ttl
     }
 }
 
@@ -41,9 +49,14 @@ module "dynamodb" {
             keydata = "S"
         }
     }
+
     tags = {
         Department = "Solutions Engineering"
         Environment = "Development"
+        Owner = var.owner
+        Region = var.hc_region
+        Purpose = var.purpose
+        TTL = var.ttl
     }
 }
 
@@ -66,6 +79,10 @@ module "iam-role" {
     tags = {
         Department = "Solutions Engineering"
         Environment = "Development"
+        Owner = var.owner
+        Region = var.hc_region
+        Purpose = var.purpose
+        TTL = var.ttl
     }
 }
 
@@ -81,6 +98,10 @@ module "my-nginx" {
     tags = {
         Department = "Solutions Engineering"
         Environment = "Development"
+        Owner = var.owner
+        Region = var.hc_region
+        Purpose = var.purpose
+        TTL = var.ttl
     }
 }
 
@@ -91,5 +112,9 @@ module "my-bucket" {
     tags = {
         Department = "Solutions Engineering"
         Environment = "Development"
+        Owner = var.owner
+        Region = var.hc_region
+        Purpose = var.purpose
+        TTL = var.ttl
     }
 }
