@@ -119,3 +119,7 @@ module "my-bucket" {
         TTL = var.ttl
     }
 }
+
+resource "aws_vpc" "primary-vpc" {
+    cidr_block = "10.10.0.0/16"
+}
